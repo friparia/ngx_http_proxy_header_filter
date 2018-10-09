@@ -1,0 +1,16 @@
+
+
+if test -n "$ngx_module_link"; then
+ngx_module_type=HTTP_AUX_FILTER
+ngx_module_name=ngx_http_proxy_header_filter_module
+ngx_module_srcs="$ngx_addon_dir/ngx_http_proxy_header_filter_module.c"
+
+. auto/module
+else
+ngx_addon_name=ngx_http_proxy_header_filter_module
+CORE_INCS="$CORE_INCS $ngx_addon_dir"
+CORE_DEPS="$CORE_DEPS $ngx_addon_dir/ngx_http_proxy_header_filter_module.h"
+HTTP_AUX_FILTER_MODULES="$HTTP_AUX_FILTER_MODULES ngx_http_proxy_header_filter_module"
+NGX_ADDON_SRCS="$NGX_ADDON_SRCS $ngx_addon_dir/ngx_http_proxy_header_filter_module.c"
+have=NGX_HTTP_PROXY_HEADER_FILTER_MODULE . auto/have
+fi
